@@ -6,5 +6,5 @@ My deliverables are as follows:
 A repository I am using to push my Rust code
 plan is to do 20 days of Rust with like a project each week if I can after words*
 
-*meanaing after all has been spoken
+*meaning after all has been spoken
 
