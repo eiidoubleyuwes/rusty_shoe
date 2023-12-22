@@ -8,3 +8,4 @@ plan is to do 20 days of Rust with like a project each week if I can after words
 
 *meaning after all has been spoken
 
+I build the project using cargo build and run with cargo run although some files I have had to use rustc
