@@ -21,4 +21,4 @@ The class files are in the format : day {x} files,
 The simple project files are in the format : day {x}_{xxxxx}
 
 
-The projects are a build up of the project files
+The projects are a build up of the class files
