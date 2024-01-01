@@ -1,47 +1,24 @@
-//New years day project,this is a new year resolution tracker
+//New year resolution tracker
+use std::io;
 use std::collections::HashMap;
-
-fn main() {
-    let mut resolutions = HashMap::new();
-
+fn main (){
+    println!("Welcome to the New Year Resolution Tracker!");
+    let mut _resolutions: HashMap<String, String>  = HashMap::new();
+    let mut resolution = String::new();
+    let mut status = String::new();
     loop {
-        println!("New Year's Resolution Tracker");
-        println!("1. Add resolution");
-        println!("2. Remove resolution");
-        println!("3. Mark resolution as complete");
-        println!("4. List resolutions");
-        println!("5. Exit");
-
-        let choice = println!("Enter your choice: ");
-        let choice = choice.trim().parse::<u32>().expect("Please enter a number");
-        match choice {
-            1 => {
-                let resolution_text = println!("Enter your resolution: ");
-                resolutions.insert(resolution_text, false);
-                println!("Resolution added!");
-            }
-            2 => {
-                let resolution_text = println!("Enter the resolution to remove: ");
-                resolutions.remove(&resolution_text);
-                println!("Resolution removed!");
-            }
-            3 => {
-                let resolution_text = println!("Enter the resolution to mark as complete: ");
-                resolutions.insert(resolution_text, true);
-                println!("Resolution marked as complete!");
-            }
-            4 => {
-                println!("Your resolutions:");
-                for (resolution, completed) in &resolutions {
-                    println!("- {} ({})", resolution, if *completed { "completed" } else { "pending" });
-                }
-            }
-            5 => {
-                break;
-            }
-            _ => {
-                println!("Invalid choice. Please try again.");
-            }
-        }
+    println!("Please enter a resolution:");
+    io::stdin().read_line(&mut resolution).expect("Failed to read line");
+    println!("Please enter the status of the resolution:");
+    io::stdin().read_line(&mut status).expect("Failed to read line");
+    _resolutions.insert(resolution.clone(), status.clone());
+    println!("Would you like to add another resolution? (y/n)");
+    let mut answer = String::new();
+    io::stdin().read_line(&mut answer).expect("Failed to read line");
+    if answer.trim() != "y" {
+        break;
     }
+}
+println!("These are your resolutions and their statuses:{:?}",_resolutions);
+
 }
