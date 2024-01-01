@@ -1,6 +1,5 @@
 //New years day project,this is a new year resolution tracker
 use std::collections::HashMap;
-use text_io::read;
 
 fn main() {
     let mut resolutions = HashMap::new();
@@ -13,21 +12,21 @@ fn main() {
         println!("4. List resolutions");
         println!("5. Exit");
 
-        let choice = read!("Enter your choice: ");
-
+        let choice = println!("Enter your choice: ");
+        let choice = choice.trim().parse::<u32>().expect("Please enter a number");
         match choice {
             1 => {
-                let resolution_text = read!("Enter your resolution: ");
+                let resolution_text = println!("Enter your resolution: ");
                 resolutions.insert(resolution_text, false);
                 println!("Resolution added!");
             }
             2 => {
-                let resolution_text = read!("Enter the resolution to remove: ");
+                let resolution_text = println!("Enter the resolution to remove: ");
                 resolutions.remove(&resolution_text);
                 println!("Resolution removed!");
             }
             3 => {
-                let resolution_text = read!("Enter the resolution to mark as complete: ");
+                let resolution_text = println!("Enter the resolution to mark as complete: ");
                 resolutions.insert(resolution_text, true);
                 println!("Resolution marked as complete!");
             }
