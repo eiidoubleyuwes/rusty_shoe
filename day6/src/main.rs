@@ -1,4 +1,8 @@
 //Understanding ownership in rust
 fn main() {
-    let a (x, y) = (1, 2);
+    //The variable s is valid from this point forward
+   {
+        let s = String::from("hello");
+        println!("{}", s);
+   }
 }
