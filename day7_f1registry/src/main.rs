@@ -1,28 +1,30 @@
-//This is a simple project to allow teams to register for the formula 1 grid
-//This project has the same mechanics as a to-do list app
-//This code is also using dependancies such as serde_json and Nickel
 extern crate nickel;
 extern crate serde;
 extern crate serde_json;
 
-use nickel::{Nickel, JsonBody, HttpRouter, MediaType};
-use std::collections::HashMap;
+use nickel::{Nickel, HttpRouter};
+use std::collections::{BTreeMap};
+use nickel::middleware;
+use nickel::Serialize;
+use nickel::Deserialize;
+use nickel::_middleware_inner;
+use nickel::as_block;
 
-struct team{
+#[derive(Debug, Serialize, Deserialize)]
+struct Driver {
     name: String,
-    drivers: Vec<String>,
-    chassis: String,
-    sponsor: String,
-    participant:bool,
+    nationality: String,
 }
-struct driver{
+
+#[derive(Debug, Clone ,Serialize, Deserialize)]
+struct F1Team {
     name: String,
-    team: String,
-    sponsor: String,
-    contract: u32
+    country: String,
+    drivers: Vec<Driver>,
 }
+
 struct F1TeamRegistry {
-    teams: BTreeMap<String, team>,
+    teams: BTreeMap<String, F1Team>,
 }
 
 impl F1TeamRegistry {
@@ -41,9 +43,10 @@ impl F1TeamRegistry {
         }
     }
 
-    fn get_all_teams(&self) -> Vec<F1Team> {
-        self.teams.values().cloned().collect()
+    fn get_all_teams(&self) -> Result<Vec<F1Team>, &'static str> {
+        Ok(self.teams.values().cloned().collect())
     }
+    
 
     fn get_team(&self, name: &str) -> Option<&F1Team> {
         self.teams.get(name)
@@ -84,5 +87,5 @@ fn main() {
         }
     });
 
-    server.listen("127.0.0.1:8080").expect("Failed to bind server");
+    server.listen("127.0.0.1:6767").expect("Failed to bind server");
 }
