@@ -2,5 +2,6 @@
 fn main() {
     let mut s = String::from("Formula 1");
     s.push_str(" is the best sport");
+    s.push_str(" in the world,period");
     println!("{}", s);
 }
