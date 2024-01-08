@@ -1,3 +1,4 @@
+//Learning how to read from a file and parse JSON data
 use serde_json;
 use std::fs;
 
