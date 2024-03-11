@@ -19,12 +19,20 @@ fn first_word(s: &str) -> &str{
     }
     &s[..]
 }
-fn second_word(s: &str) -> &str{
-    let bytes = s.as_bytes();
-    for (i, &item) in bytes.iter().enumerate(){
-        if item == b' '{
-            return &s[i+1..]; //Return  a slice to the whitespace
-        }
+fn second_word(s: &str) -> &str {
+  let bytes = s.as_bytes();
+  
+  let mut index = 0;
+  //Finds the first white spav=ce,and stores the index
+  for (i, &item) in bytes.iter().enumerate() {
+    if item == b' '{
+      if index == 0 {
+        index = i + 1; 
+      } else {
+        return &s[index..i];
+      }
     }
-    &s[..]
+  }
+
+  &s[..]
 }
